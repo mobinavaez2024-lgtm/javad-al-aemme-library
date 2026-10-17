@@ -1,0 +1,191 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>کتابخانه مسجد جوادالائمه</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Tahoma, Arial, sans-serif;
+      background: #f8f5ec;
+      color: #253d32;
+      line-height: 1.9;
+    }
+    header {
+      background: #214b39;
+      color: white;
+      padding: 24px 18px;
+      text-align: center;
+    }
+    header h1 { margin: 0; font-size: 27px; }
+    header p { margin: 6px 0 0; color: #e5eadf; }
+    nav {
+      background: #183a2c;
+      padding: 12px;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 12px;
+      font-size: 14px;
+    }
+    .hero {
+      padding: 48px 20px;
+      text-align: center;
+      background: linear-gradient(135deg, #e9e4d3, #f8f5ec);
+    }
+    .hero h2 { font-size: 26px; margin: 0 0 10px; }
+    .hero p { color: #5d6d61; }
+    .search {
+      display: flex;
+      max-width: 550px;
+      margin: 24px auto 0;
+      gap: 8px;
+    }
+    input {
+      min-width: 0;
+      flex: 1;
+      padding: 13px;
+      border: 1px solid #cbd4c8;
+      border-radius: 10px;
+      font: inherit;
+    }
+    button {
+      background: #214b39;
+      color: white;
+      border: 0;
+      border-radius: 10px;
+      padding: 12px 20px;
+      font: inherit;
+      cursor: pointer;
+    }
+    main { max-width: 1000px; margin: auto; padding: 28px 18px; }
+    .section-title { margin-bottom: 16px; }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background: white;
+      border: 1px solid #e4e4d9;
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: 0 4px 14px #253d3209;
+    }
+    .book-icon { font-size: 32px; }
+    .card h3 { margin: 6px 0; }
+    .muted { color: #6e796f; font-size: 14px; }
+    .notice {
+      margin-top: 30px;
+      padding: 22px;
+      background: #e7eee5;
+      border-radius: 14px;
+    }
+    footer {
+      margin-top: 35px;
+      background: #214b39;
+      color: white;
+      padding: 22px;
+      text-align: center;
+      font-size: 13px;
+    }
+    #results { margin-top: 18px; }
+    @media (max-width: 480px) {
+      header h1 { font-size: 22px; }
+      .hero h2 { font-size: 22px; }
+      nav a { margin: 0 6px; }
+      .search button { padding: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>📚 کتابخانه مسجد جوادالائمه</h1>
+    <p>جایی برای دانایی، اندیشه و آرامش</p>
+  </header>
+
+  <nav>
+    <a href="#home">صفحه اصلی</a>
+    <a href="#books">کتاب‌ها</a>
+    <a href="#news">اخبار و برنامه‌ها</a>
+    <a href="#about">درباره ما</a>
+  </nav>
+
+  <section class="hero" id="home">
+    <h2>به کتابخانه‌مان خوش آمدید 🌱</h2>
+    <p>کتاب مورد علاقه‌ات را پیدا کن و سفر تازه‌ای را آغاز کن.</p>
+    <div class="search">
+      <input id="searchInput" type="search"
+        placeholder="نام کتاب یا نویسنده را بنویس..."
+        aria-label="جست‌وجوی کتاب">
+      <button onclick="searchBooks()">جست‌وجو</button>
+    </div>
+  </section>
+
+  <main>
+    <section id="books">
+      <h2 class="section-title">📖 کتاب‌های پیشنهادی</h2>
+      <p class="muted">این بخش نمونه‌ی اولیه است و بعداً با فهرست واقعی کتابخانه تکمیل می‌شود.</p>
+      <div class="cards" id="bookList">
+        <article class="card" data-search="نمونه کتاب اول">
+          <div class="book-icon">📗</div>
+          <h3>نمونه کتاب اول</h3>
+          <p class="muted">نویسنده: نام نویسنده</p>
+        </article>
+        <article class="card" data-search="نمونه کتاب دوم">
+          <div class="book-icon">📘</div>
+          <h3>نمونه کتاب دوم</h3>
+          <p class="muted">نویسنده: نام نویسنده</p>
+        </article>
+        <article class="card" data-search="نمونه کتاب سوم">
+          <div class="book-icon">📙</div>
+          <h3>نمونه کتاب سوم</h3>
+          <p class="muted">نویسنده: نام نویسنده</p>
+        </article>
+      </div>
+      <p id="results" role="status"></p>
+    </section>
+
+    <section class="notice" id="news">
+      <h2>🌿 اخبار و برنامه‌های فرهنگی</h2>
+      <p>اطلاعیه‌ها، نشست‌های کتاب‌خوانی و برنامه‌های فرهنگی مسجد در این بخش قرار می‌گیرند.</p>
+    </section>
+
+    <section class="notice" id="about">
+      <h2>🤍 درباره کتابخانه</h2>
+      <p>کتابخانه مسجد جوادالائمه با هدف ترویج فرهنگ مطالعه و فراهم کردن فضایی برای یادگیری و رشد فرهنگی فعالیت می‌کند.</p>
+    </section>
+  </main>
+
+  <footer>
+    کتابخانه مسجد جوادالائمه | به دنیای کتاب خوش آمدید 🤍
+  </footer>
+
+  <script>
+    function searchBooks() {
+      const query = document.getElementById('searchInput').value.trim().toLowerCase();
+      const cards = document.querySelectorAll('#bookList .card');
+      let count = 0;
+
+      cards.forEach(card => {
+        const text = (card.innerText + ' ' + card.dataset.search).toLowerCase();
+        const matched = text.includes(query);
+        card.style.display = matched ? '' : 'none';
+        if (matched) count++;
+      });
+
+      document.getElementById('results').textContent =
+        query ? (count ? count + ' مورد پیدا شد.' : 'کتابی با این عبارت پیدا نشد.') : '';
+    }
+
+    document.getElementById('searchInput').addEventListener('keydown', event => {
+      if (event.key === 'Enter') searchBooks();
+    });
+  </script>
+</body>
+</html>
